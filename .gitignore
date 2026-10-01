@@ -1,0 +1,61 @@
+# MeganeRS-Dashboard-LVGL
+
+Ce projet vise à reproduire un tableau de bord inspiré de la Renault Mégane RS, affiché sur un écran CrowPanel AP085 (ESP32-S3, ST7796, 480x272) et alimenté par des données OBD-II sur CAN.
+
+## Matériel
+- ESP32-S3 intégré sur CrowPanel AP085
+- Écran TFT ST7796, 480x272
+- Bus CAN pour OBD-II
+- Transceiver CAN recommandé : SN65HVD230 ou MCP2551
+
+## Pins recommandées
+
+### Écran ST7796
+- MOSI = GPIO 11
+- MISO = GPIO 13
+- SCK = GPIO 12
+- CS = GPIO 10
+- DC = GPIO 14
+- RST = GPIO 9
+
+### CAN / OBD-II
+- CAN TX = GPIO 21
+- CAN RX = GPIO 22
+
+### OBD-II (connecteur véhicule)
+- CAN H = broche 6
+- CAN L = broche 14
+- GND = broche 5
+- +12V = broche 16 (si alimentation du module est nécessaire)
+
+## Démarrage rapide
+
+1. Installer VS Code + PlatformIO
+2. Cloner ce dépôt
+3. Ouvrir le dossier dans PlatformIO
+4. Compiler et téléverser
+5. Vérifier la console série
+
+## Exemple de fonctionnalités
+- tachymètre animé
+- affichage vitesse
+- affichage température moteur
+- affichage pression de suralimentation (boost)
+- mode démo si le bus CAN n'est pas encore connecté
+- préparation pour intégration OBD-II réel via PID CAN
+
+## Important
+Le code livré ici est une base fonctionnelle et visuellement proche du dashboard souhaité. La lecture OBD-II en direct dépend du protocole de votre véhicule et de la façon dont votre adaptateur CAN répond sur le bus.
+
+## Références utiles
+- ESP32-S3 CAN / TWAI
+- ST7796 480x272 sur ESP32-S3
+- OBD-II sur CAN (ISO 15765-4)
+
+## Prochaine étape
+La prochaine version de ce projet inclura :
+- un vrai dashboard complet Mégane RS
+- jauges plus détaillées
+- données actuelles RPM, vitesse, boost, température
+- gestion des décimales et des couleurs néon
+- intégration de l'interface OBD-II réelle avec parsing des trames ISO-TP
